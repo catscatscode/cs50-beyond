@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,7 +27,9 @@
                         <ul>
                           {this.state.tasks.map( (task, index) =>
                             <li key={index}>
-                              {task}
+                            <button onClick={ () => this.deleteTask(index) }>delete</button>
+                            <span> </span>
+                            {task}
                             </li>
                           )}
                         </ul>
@@ -54,6 +55,16 @@
                   tasks: [...state.tasks, state.input],
                   input: ""
                 }));
+              }
+
+              deleteTask = (index) => {
+                this.setState(state => {
+                  const tasks = [...this.state.tasks];
+                  tasks.splice(index, 1);
+                  return {
+                    tasks: tasks
+                  };
+                })
               }
 
             }
